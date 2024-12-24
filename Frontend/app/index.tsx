@@ -1,9 +1,15 @@
 import CustomButton from '@/components/CustomButton';
 import { router } from 'expo-router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import SessionStorage from 'react-native-session-storage';
 
 const IndexPage = () => {
+  useEffect(()=>{
+    if(SessionStorage.getItem('token')){
+      router.replace('/createnotes')
+    }
+  })
   return (
     <View className="flex-1 bg-blue-300 justify-center items-center px-5">
       {/* Header */}

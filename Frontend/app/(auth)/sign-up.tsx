@@ -17,7 +17,8 @@ const Signup = ({ navigation }: { navigation: NavigationProp<any> }) => {
       return;
     }
     const response=await axios.post('https://9992-49-43-33-39.ngrok-free.app/user/signup',{name:username,email,password})
-    if(response.status===200){
+    console.log(response.data)
+    if(response.data.message==="User created"){
       Alert.alert('Success', 'User created successfully!');
       setUsername('');
       setEmail('');
