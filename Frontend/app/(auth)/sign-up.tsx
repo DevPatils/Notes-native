@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 
-const Signup = () => {
+import { NavigationProp } from '@react-navigation/native';
+import { router } from 'expo-router';
+import CustomButton from '@/components/CustomButton';
+
+const Signup = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -56,6 +60,18 @@ const Signup = () => {
       >
         <Text className="text-white font-bold text-lg uppercase">Sign Up</Text>
       </TouchableOpacity>
+
+      {/* Redirect to Sign In */}
+      <View className="mt-6">
+        <Text className="text-base text-black mb-2">Already have an account?</Text>
+        <CustomButton
+          title="Sign In"
+          handlepress={() => router.push('/sign-in')}
+          containerStyles="bg-green-500 px-10 py-3 rounded-md border-2 border-black shadow-md"
+          textStyles="text-white font-pbold text-lg"
+          isLoading={false}
+        />
+      </View>
     </View>
   );
 };

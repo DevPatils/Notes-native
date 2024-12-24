@@ -1,12 +1,68 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react';
+import { View, Text, TextInput, Alert } from 'react-native';
+import { router } from 'expo-router';
+import CustomButton from '@/components/CustomButton';
 
 const Signin = () => {
-  return (
-    <View>
-      <Text>Signin</Text>
-    </View>
-  )
-}
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-export default Signin
+  const handleSignin = () => {
+    if (!email || !password) {
+      Alert.alert('Error', 'Both fields are required!');
+      return;
+    }
+    Alert.alert('Success', 'Sign In successful!');
+    console.log({ email, password });
+  };
+
+  return (
+    <View className="flex-1 bg-green-300 justify-center items-center px-5">
+      {/* Header */}
+      <Text className="text-4xl font-bold text-black mb-6 font-pbold">Sign In</Text>
+
+      {/* Email Input */}
+      <TextInput
+        className="w-80 border-black border-2 p-3 focus:outline-none focus:shadow-[2px_2px_0px_rgba(0,0,0,1)] focus:bg-[#FFA6F6] active:shadow-[2px_2px_0px_rgba(0,0,0,1)] mb-4"
+        placeholder="Email"
+        placeholderTextColor="#888"
+        keyboardType="email-address"
+        value={email}
+        onChangeText={setEmail}
+      />
+
+      {/* Password Input */}
+      <TextInput
+        className="w-80 border-black border-2 p-3 focus:outline-none focus:shadow-[2px_2px_0px_rgba(0,0,0,1)] focus:bg-[#FFA6F6] active:shadow-[2px_2px_0px_rgba(0,0,0,1)] mb-6"
+        placeholder="Password"
+        placeholderTextColor="#888"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
+      />
+
+      {/* Sign In Button */}
+      <CustomButton
+        title="Sign In"
+        handlepress={handleSignin}
+        containerStyles="w-80 bg-green-500 py-4 rounded-md border-2 border-black shadow-md"
+        textStyles="text-white font-bold text-lg uppercase"
+        isLoading={false}
+      />
+
+      {/* Redirect to Sign Up */}
+      <View className="mt-6">
+        <Text className="text-base text-black mb-2">Don't have an account?</Text>
+        <CustomButton
+          title="Sign up"
+          handlepress={() => router.push('/sign-up')}
+          containerStyles="bg-green-500 px-10 py-3 rounded-md border-2 border-black shadow-md"
+          textStyles="text-white font-pbold text-lg"
+          isLoading={false}
+        />
+      </View>
+    </View>
+  );
+};
+
+export default Signin;
