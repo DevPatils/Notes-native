@@ -1,21 +1,30 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
-
+import axios from 'axios';
 import { NavigationProp } from '@react-navigation/native';
 import { router } from 'expo-router';
 import CustomButton from '@/components/CustomButton';
+import SessionStorage from 'react-native-session-storage';
 
 const Signup = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignup = () => {
+  const handleSignup = async() => {
     if (!username || !email || !password) {
       Alert.alert('Error', 'All fields are required!');
       return;
     }
-    Alert.alert('Success', 'Signup successful!');
+    const response=await axios.post('https://9992-49-43-33-39.ngrok-free.app/user/signup',{name:username,email,password})
+    if(response.status===200){
+      Alert.alert('Success', 'User created successfully!');
+      setUsername('');
+      setEmail('');
+      setPassword('');
+      SessionStorage.setItem('token', response.data.token);
+      router.replace('/createnotes')
+    }
     console.log({ username, email, password });
   };
 
