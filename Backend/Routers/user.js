@@ -50,8 +50,8 @@ userRouter.post('/login', async (req, res) => {
 });
 
 // Middleware to verify JWT
-const authenticate = (req, res, next) => {
-    const token = req.headers.authorization?.split(' ')[1]; // Expected format: "Bearer <token>"
+ const authenticate = (req, res, next) => {
+    const token = req.headers.authorization; // Expected format: "Bearer <token>"
     if (!token) {
         res.status(401).json({ message: 'Authorization token missing' });
         return;
@@ -70,4 +70,4 @@ userRouter.get('/protected', authenticate, (req, res) => {
     res.status(200).json({ message: 'This is a protected route', user: req.user });
 });
 
-module.exports = userRouter;
+module.exports = {userRouter, authenticate};

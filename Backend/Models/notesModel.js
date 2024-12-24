@@ -1,5 +1,5 @@
-const Schema=require('mongoose');
-const notesSchema=new Schema({
+const mongoose=require('mongoose');
+const notesSchema=new mongoose.Schema({
     title:{
         type:String,
         required:true
@@ -16,10 +16,10 @@ const notesSchema=new Schema({
         type:Date,
         default:Date.now
     },
-    user:{
-        type:Schema.Types.ObjectId,
+    author:{
+        type:mongoose.Schema.Types.ObjectId,
         ref:'user'
     }
 })
-const notesModel=Schema.model('note',notesSchema);
+const notesModel=mongoose.model('note',notesSchema);
 module.exports=notesModel;
