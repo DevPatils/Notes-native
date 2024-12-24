@@ -3,6 +3,8 @@ import { View, Text, TextInput, Alert } from 'react-native';
 import { router } from 'expo-router';
 import CustomButton from '@/components/CustomButton';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Signin = () => {
   const [email, setEmail] = useState('');
@@ -17,6 +19,7 @@ const Signin = () => {
     console.log(response.data)
     if(response.data.token!==null){
       // sessionStorage.setItem('token', response.data.token);
+      AsyncStorage.setItem('token', response.data.token);
       Alert.alert('Success', 'Sign In successful!');
       router.replace('/createnotes')
     }

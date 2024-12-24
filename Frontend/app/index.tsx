@@ -2,15 +2,24 @@ import CustomButton from '@/components/CustomButton';
 import { router } from 'expo-router';
 import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import SessionStorage from 'react-native-session-storage';
+// import SessionStorage from 'react-native-session-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const IndexPage = () => {
-  useEffect(()=>{
-    console.log(SessionStorage.getItem('token'))
-    if(SessionStorage.getItem('token')){
-      router.replace('/createnotes')
+  const handleClick=()=>{
+
+    if(AsyncStorage.getItem('token')!==null){
+      router.push('/sign-up');
     }
-  })
+    router.push('/createnotes');
+  }
+  // useEffect(()=>{
+  //   console.log(AsyncStorage.getItem('token'))
+  //   if(AsyncStorage.getItem('token')!==null){
+  //     router.push('/createnotes')
+  //   }
+  // })
   return (
     <View className="flex-1 bg-blue-300 justify-center items-center px-5">
       {/* Header */}
@@ -26,7 +35,7 @@ const IndexPage = () => {
       {/* Create New Note Button */}
       <CustomButton 
         title='Create New Note'
-        handlepress={()=>router.push('/sign-up')}
+        handlepress={()=>handleClick()}
         containerStyles='bg-green-500 px-10 py-3 rounded-md border-2 border-black shadow-md'
         textStyles='text-white font-pbold text-lg'
         isLoading={false}

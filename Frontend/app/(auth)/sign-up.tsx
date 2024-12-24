@@ -4,7 +4,8 @@ import axios from 'axios';
 import { NavigationProp } from '@react-navigation/native';
 import { router } from 'expo-router';
 import CustomButton from '@/components/CustomButton';
-import SessionStorage from 'react-native-session-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Signup = ({ navigation }: { navigation: NavigationProp<any> }) => {
   const [username, setUsername] = useState('');
@@ -23,7 +24,7 @@ const Signup = ({ navigation }: { navigation: NavigationProp<any> }) => {
       setUsername('');
       setEmail('');
       setPassword('');
-      SessionStorage.setItem('token', response.data.token);
+      AsyncStorage.setItem('token', response.data.token);
       router.replace('/createnotes')
     }
     console.log({ username, email, password });
