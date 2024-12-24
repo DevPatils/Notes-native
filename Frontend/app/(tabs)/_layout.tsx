@@ -1,7 +1,7 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
-import Ionicons from '@expo/vector-icons/Ionicons'
+import FontAwesome  from '@expo/vector-icons/FontAwesome'
 import AntDesign from "@expo/vector-icons/AntDesign"
 // import icons  from '../../constants/icons'
 // import {bookmark'
@@ -42,39 +42,23 @@ const TabLayout = () => {
                     options={{
                         title: "Create Notes",
                         headerShown:false,
-                        tabBarIcon:({color,focused})=>(
-                            <TabIcon
-                            icons={<Ionicons name='create' size={12} color={color}/>}
-                            color={color}
-                            name='Create Notes'
-                            />
-                        )
+                        tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+        
                     }}
                 />
                 <Tabs.Screen name='viewnotes'
                     options={{
                         title: "View Notes",
                         headerShown:false,
-                        tabBarIcon:({color,focused})=>(
-                            <TabIcon
-                            icons={<Ionicons name='bookmark' size={12} color={color}/>}
-                            color={color}
-                            name='View Notes'
-                            />
-                        )
+                        tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+                            
                     }}
                 />
                 <Tabs.Screen name='profile'
                     options={{
                         title: "Profile",
                         headerShown:false,
-                        tabBarIcon:({color,focused})=>(
-                            <TabIcon
-                            icons={<AntDesign name='user' size={12} color={color}/>}
-                            color={color}
-                            name='Profile Page'
-                            />
-                        )
+                        tabBarIcon:({color})=><AntDesign name='user' size={12} color={color}/>
                     }}
                 />
             </Tabs>
