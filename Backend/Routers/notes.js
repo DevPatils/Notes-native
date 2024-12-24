@@ -4,7 +4,7 @@ const userModel = require('../Models/userModel');
 const { authenticate } = require('./user');
 
 notesRouter.post('/createNotes', authenticate, async (req, res) => {
-    const { title, content, } = req.body;
+    const { title, content,tags } = req.body;
     console.log(req.body    );
     try {
         // Fetch the user details using the ID from the decoded token
@@ -17,6 +17,7 @@ notesRouter.post('/createNotes', authenticate, async (req, res) => {
         const note = await notesModel.create({
             title,
             content,
+            category:tags,
             author: user._id, // Use the MongoDB `_id` field
         });
         user.notes.push(note._id);
@@ -27,7 +28,7 @@ notesRouter.post('/createNotes', authenticate, async (req, res) => {
         res.status(500).json({ message: 'Error creating note', error });
     }
 });
-notesRouter.get('/readNotes', authenticate, async (req, res) => {
+notesRouter.get('/  ', authenticate, async (req, res) => {
     try {
         // Fetch all notes created by the authenticated user
         const notes = await notesModel.find({ author: req.user.id });

@@ -1,10 +1,12 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
+import Ionicons from '@expo/vector-icons/Ionicons'
+import AntDesign from "@expo/vector-icons/AntDesign"
 // import icons  from '../../constants/icons'
-import {bookmark} from '../../assets/icons/bookmark.png'
-import {home} from '../../assets/icons/home.png'
-import {profile} from '../../assets/icons/profile.png'
+// import {bookmark'
+// import {home} from '../../assets/icons/home.png'
+// import {profile} from '../../assets/icons/profile.png'
 const TabIcon = ({ icon, color, name, focused }: any) => {
     return (
         <View className='item-center justify-center gap-2'>
@@ -42,7 +44,7 @@ const TabLayout = () => {
                         headerShown:false,
                         tabBarIcon:({color,focused})=>(
                             <TabIcon
-                            icons={home}
+                            icons={<Ionicons name='create' size={12} color={color}/>}
                             color={color}
                             name='Create Notes'
                             />
@@ -55,7 +57,7 @@ const TabLayout = () => {
                         headerShown:false,
                         tabBarIcon:({color,focused})=>(
                             <TabIcon
-                            icons={bookmark}
+                            icons={<Ionicons name='bookmark' size={12} color={color}/>}
                             color={color}
                             name='View Notes'
                             />
@@ -68,7 +70,7 @@ const TabLayout = () => {
                         headerShown:false,
                         tabBarIcon:({color,focused})=>(
                             <TabIcon
-                            icons={profile}
+                            icons={<AntDesign name='user' size={12} color={color}/>}
                             color={color}
                             name='Profile Page'
                             />
