@@ -16,7 +16,7 @@ const Signup = ({ navigation }: { navigation: NavigationProp<any> }) => {
       Alert.alert('Error', 'All fields are required!');
       return;
     }
-    const response=await axios.post('https://9992-49-43-33-39.ngrok-free.app/user/signup',{name:username,email,password})
+    const response=await axios.post('https://0759-49-43-33-162.ngrok-free.app/user/signup',{name:username,email,password})
     console.log(response.data)
     if(response.data.message==="User created"){
       Alert.alert('Success', 'User created successfully!');
