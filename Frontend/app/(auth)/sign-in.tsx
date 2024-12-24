@@ -2,17 +2,25 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Alert } from 'react-native';
 import { router } from 'expo-router';
 import CustomButton from '@/components/CustomButton';
+import axios from 'axios';
 
 const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSignin = () => {
+  const handleSignin = async() => {
     if (!email || !password) {
       Alert.alert('Error', 'Both fields are required!');
       return;
     }
-    Alert.alert('Success', 'Sign In successful!');
+    const response=await axios.post('https://9992-49-43-33-39.ngrok-free.app/user/login',{email,password})
+    console.log(response.data)
+    if(response.data.token!==null){
+      // sessionStorage.setItem('token', response.data.token);
+      Alert.alert('Success', 'Sign In successful!');
+      router.replace('/createnotes')
+    }
+    // Alert.alert('Success', 'Sign In successful!');
     console.log({ email, password });
   };
 

@@ -6,6 +6,7 @@ import SessionStorage from 'react-native-session-storage';
 
 const IndexPage = () => {
   useEffect(()=>{
+    console.log(SessionStorage.getItem('token'))
     if(SessionStorage.getItem('token')){
       router.replace('/createnotes')
     }
