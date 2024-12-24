@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "StickerSmash",
-    "slug": "StickerSmash",
+    "name": "NativeNotes",
+    "slug": "NativeNotes",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/icons/home.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,7 +13,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/icons/home.png",
         "backgroundColor": "#ffffff"
       }
     },

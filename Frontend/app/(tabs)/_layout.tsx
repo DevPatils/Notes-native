@@ -1,7 +1,10 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { Tabs } from 'expo-router'
-import icons  from '../../constants/icons'
+// import icons  from '../../constants/icons'
+import {bookmark} from '../../assets/icons/bookmark.png'
+import {home} from '../../assets/icons/home.png'
+import {profile} from '../../assets/icons/profile.png'
 const TabIcon = ({ icon, color, name, focused }: any) => {
     return (
         <View className='item-center justify-center gap-2'>
@@ -39,7 +42,7 @@ const TabLayout = () => {
                         headerShown:false,
                         tabBarIcon:({color,focused})=>(
                             <TabIcon
-                            icons={icons.plus}
+                            icons={home}
                             color={color}
                             name='Create Notes'
                             />
@@ -52,9 +55,22 @@ const TabLayout = () => {
                         headerShown:false,
                         tabBarIcon:({color,focused})=>(
                             <TabIcon
-                            icons={icons.bookmark}
+                            icons={bookmark}
                             color={color}
                             name='View Notes'
+                            />
+                        )
+                    }}
+                />
+                <Tabs.Screen name='profile'
+                    options={{
+                        title: "Profile",
+                        headerShown:false,
+                        tabBarIcon:({color,focused})=>(
+                            <TabIcon
+                            icons={profile}
+                            color={color}
+                            name='Profile Page'
                             />
                         )
                     }}

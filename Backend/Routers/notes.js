@@ -4,8 +4,8 @@ const userModel = require('../Models/userModel');
 const { authenticate } = require('./user');
 
 notesRouter.post('/createNotes', authenticate, async (req, res) => {
-    const { title, content } = req.body;
-
+    const { title, content, } = req.body;
+    console.log(req.body    );
     try {
         // Fetch the user details using the ID from the decoded token
         const user = await userModel.findById(req.user.id);

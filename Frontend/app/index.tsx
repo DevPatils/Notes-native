@@ -7,9 +7,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const IndexPage = () => {
-  const handleClick=()=>{
+  const handleClick = async () => {
+    const token = await AsyncStorage.getItem('token')
+    if (token == null) {
 
-    if(AsyncStorage.getItem('token')!==null){
+      console.log(token)
       router.push('/sign-up');
     }
     router.push('/createnotes');
@@ -33,9 +35,9 @@ const IndexPage = () => {
       </Text>
 
       {/* Create New Note Button */}
-      <CustomButton 
+      <CustomButton
         title='Create New Note'
-        handlepress={()=>handleClick()}
+        handlepress={() => handleClick()}
         containerStyles='bg-green-500 px-10 py-3 rounded-md border-2 border-black shadow-md'
         textStyles='text-white font-pbold text-lg'
         isLoading={false}
